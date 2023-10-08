@@ -1,16 +1,14 @@
-
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard from "../ProductCard/ProductCard";
-import { useContext } from "react";
-import { DataContext } from "../Context/DatosContext";
+import { DataContext } from "../context/dataContext";
 
 export default function ItemListContainer() {
 
-    const productos = useContext(DataContext);
+    const { productos } = useContext(DataContext);
 
     const [filtroCategoria, setFiltroCategoria] = useState([]);
     const [targetIn, setTargetIn] = useState("todos");
-    const [eventIn, setEventIn] = useState("todos");
+    const [eventIn, setEventIn] = useState();
 
     function filtrarPorCategoria(e) {
         setTargetIn(e.target.value);
@@ -21,11 +19,14 @@ export default function ItemListContainer() {
     }
 
     useEffect(() => {
-        const productosFiltrados = productos.filter((elemento) => {
+
+        const productosFiltrados = productos.filter(function (elemento) {
             if (elemento.categoria === targetIn) {
-                return (elemento);
-            }else if(elemento.categoria === "todos"){
-                return (productos);
+                return true;
+            }else if(targetIn === "todos"){
+                return true;
+            }else{
+                return false;
             }
         });
 
@@ -35,17 +36,17 @@ export default function ItemListContainer() {
             } else if (eventIn === "mayor") {
                 return (b.precio - a.precio);
             } else if (eventIn === "todos") {
-                return (productosFiltrados);
+                return productosFiltrados;
+            }else{
+                return productos;
             }
-
         });
         
-        console.log(productosOrdenados);
         setFiltroCategoria(productosOrdenados);
 
-    }, [targetIn, eventIn, productos]);
+}, [targetIn, eventIn, productos]);
 
-        console.log(productos);
+        
         console.log(filtroCategoria);
     return (
         <div className="item-list-container">
@@ -76,9 +77,10 @@ export default function ItemListContainer() {
 
             </div>
             {
-                filtroCategoria.length > 0 ?
+                <ProductCard key={filtroCategoria.id} productos={filtroCategoria} />
+                /* filtroCategoria.length > 0 ?
                     <ProductCard key={filtroCategoria.id} productos={filtroCategoria} /> :
-                    <ProductCard key={productos.id} productos={productos} />
+                    <ProductCard key={productos.id} productos={productos} /> */
             }
         </div>
     )

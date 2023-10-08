@@ -372,6 +372,20 @@ input {
     transition-timing-function: ease-in-out, ease-in-out, ease-in-out;
     transition-property: background-color, color, border-color;
 }
+.botones-carrito{
+    display: flex;
+    justify-content: flex-end;
+    gap: 50px;
+}
+.carrito-mensaje{
+    text-align: center;
+}
+.boton-quitar-carrito{
+    background-color: #418241;
+    color: white;
+    border-style: none;
+    padding: 8px;
+}
 
 /* Contacto */
 .contacto-main {
@@ -505,4 +519,13 @@ input {
     background-color: red;
     color: white;
     margin: 30px;
+}
+
+/* carrito widget */
+.widget{
+    display: flex;
+}
+.widget p{
+    color: yellow;
+    padding-bottom: 18px;
 }

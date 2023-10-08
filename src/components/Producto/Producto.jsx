@@ -1,13 +1,36 @@
-
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
-import ItemContador from "../ItemContador/ItemContador";
+import { DataContext } from "../context/dataContext";
+
+
 
 export default function Producto({producto}) {
-    
-    function handleAgregar() {
-        console.log({...producto, cantidad});
+
+    const { carrito, setCarrito} = useContext(DataContext);
+    const [cantidad, setCantidad] = useState(1);
+
+    function handleRestar() {
+        cantidad > 1 && setCantidad(cantidad - 1);
     }
 
+    function handleSumar() {
+        cantidad < producto.stock && setCantidad(cantidad + 1);
+    }
+    
+    function handleAgregar() {
+        const productoSel = {...producto, cantidad};
+        const carritoCopia = [...carrito];
+        const prodEncontradoCarrito = carritoCopia.find((item) => item.id === productoSel.id);
+        
+        if (prodEncontradoCarrito){
+            prodEncontradoCarrito.cantidad += cantidad;
+        } else {
+            carritoCopia.push(productoSel)
+        }
+        setCarrito(carritoCopia);
+    }
+
+    
     return (
         <div className="product-card">
             
@@ -16,8 +39,11 @@ export default function Producto({producto}) {
             <p>Categoría: {producto.categoria}</p>
             <div className="precio-cantidad">
                 <p>Precio: ${producto.precio}</p>
-                <ItemContador productoStock={producto.stock}/>
-                
+                <div className="seleccion-cantidad">
+                    <button onClick={handleRestar} className="botton-cantidad">-</button>                
+                    <p className="info-cantidad">{producto.stock === 0 ? "X" : cantidad}</p>
+                    <button onClick={handleSumar} className="botton-cantidad">+</button>
+                </div>
             </div>
 
             <div className="buttons-card">
