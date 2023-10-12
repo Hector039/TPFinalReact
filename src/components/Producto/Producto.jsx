@@ -1,35 +1,10 @@
-import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
 import { DataContext } from "../context/dataContext";
-
-
 
 export default function Producto({producto}) {
 
-    const { carrito, setCarrito} = useContext(DataContext);
-    const [cantidad, setCantidad] = useState(1);
-
-    function handleRestar() {
-        cantidad > 1 && setCantidad(cantidad - 1);
-    }
-
-    function handleSumar() {
-        cantidad < producto.stock && setCantidad(cantidad + 1);
-    }
-    
-    function handleAgregar() {
-        const productoSel = {...producto, cantidad};
-        const carritoCopia = [...carrito];
-        const prodEncontradoCarrito = carritoCopia.find((item) => item.id === productoSel.id);
-        
-        if (prodEncontradoCarrito){
-            prodEncontradoCarrito.cantidad += cantidad;
-        } else {
-            carritoCopia.push(productoSel)
-        }
-        setCarrito(carritoCopia);
-    }
-
+    const { cantidad, handleAgregar, handleRestar, handleSumar} = useContext(DataContext);
     
     return (
         <div className="product-card">
@@ -42,13 +17,13 @@ export default function Producto({producto}) {
                 <div className="seleccion-cantidad">
                     <button onClick={handleRestar} className="botton-cantidad">-</button>                
                     <p className="info-cantidad">{producto.stock === 0 ? "X" : cantidad}</p>
-                    <button onClick={handleSumar} className="botton-cantidad">+</button>
+                    <button onClick={()=>handleSumar(producto.stock)} className="botton-cantidad">+</button>
                 </div>
             </div>
 
             <div className="buttons-card">
                 <NavLink to={`/${producto.id}`} className="info-button">Ver Detalle</NavLink>
-                <button className="cart-button" onClick={handleAgregar}>Añadir al Carrito</button>
+                <button className="cart-button" onClick={()=>handleAgregar(producto)}>Añadir al Carrito</button>
             </div>
 
         </div>

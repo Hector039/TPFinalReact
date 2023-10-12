@@ -14,7 +14,6 @@ return (
                 <img src={CarritoIcono} alt="Icono Carrito"/>
                 <p>{carritoNumero()}</p>
             </div>
-            
         </Link>
     </div>
 )

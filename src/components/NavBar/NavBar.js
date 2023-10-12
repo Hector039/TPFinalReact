@@ -46,8 +46,7 @@ export default function NavBar() {
                                         <NavLink to={"/contacto"} className="navbar-item" style={({isActive})=>{
                                                 return {fontWeight: isActive ? "bold" : ""}
                                         }}>Contacto</NavLink>
-                                        
-                                        <CartWidget />
+                                        <CartWidget/>
                                 </div>
                         </div>
                 </nav>

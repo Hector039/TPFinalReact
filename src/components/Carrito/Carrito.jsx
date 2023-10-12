@@ -4,19 +4,18 @@ import { DataContext } from "../context/dataContext"
 
 export default function Carrito() {
 
-    const {carrito, setCarrito} = useContext(DataContext);
-
+    const {carrito, handleVaciar, eliminarItem} = useContext(DataContext);
+/* 
     const handleVaciar = () => {
         setCarrito([]);
     }
 
     function eliminarItem(id) {
         const itemId = carrito.find((item) => item.id === id);
-        console.log(itemId);
         const carritoNuevo = carrito.filter((item) => item.id !== itemId.id);
         setCarrito(carritoNuevo);
     }
-
+ */
 
 
     return (
