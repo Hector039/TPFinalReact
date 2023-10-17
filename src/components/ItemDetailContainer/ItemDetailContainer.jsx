@@ -1,14 +1,27 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { DataContext } from "../context/dataContext";
+import Contador from "../Contador/Contador";
+import { doc, getDoc } from "firebase/firestore";
+import { DataBase } from "../../Firebase/config";
+
 
 export default function ItemDetailContainer() {
 
-    const {productos, cantidad, handleAgregar, handleRestar, handleSumar} = useContext(DataContext);
+    const { handleAgregar } = useContext(DataContext);
+    const [ cantidadProd, setCantidadProd ] = useState(1);
+    const [ productoDetalle, setProductoDetalle ] = useState({})
 
-    const { productoId } = useParams();
+    const { productoId }  = useParams();
+    
+    useEffect(() => {
+        const docRef = doc(DataBase, "productos", productoId);
+        getDoc(docRef)
+            .then((resp) => {
+                setProductoDetalle({ ...resp.data(), id: resp.id });
+        })
+    }, [productoId])
 
-    const productoDetalle = productos.find(obj => obj.id === parseInt(productoId));
 
     return (
 
@@ -18,22 +31,18 @@ export default function ItemDetailContainer() {
             </div>
             <div className="product-main-detalle">
                 <p>{productoDetalle.nombre_producto}</p>
-                <p>Stock: {productoDetalle.stock} -- ID: {productoDetalle.id}</p>
+                <p>Stock: {productoDetalle.stock}</p>
 
                 <div className="precio-cantidad">
                     <p>Precio: ${productoDetalle.precio}</p>
-                    <div className="seleccion-cantidad">
-                        <button onClick={handleRestar} className="botton-cantidad">-</button>
-                        <p className="info-cantidad">{productoDetalle.stock === 0 ? "X" : cantidad}</p>
-                        <button onClick={()=>handleSumar(productoDetalle.stock)} className="botton-cantidad">+</button>
-                    </div>
+                    <Contador stock={productoDetalle.stock} cantidad={cantidadProd} setcantidad={setCantidadProd}/>
                 </div>
 
                 <p>Descripción: {productoDetalle.descripcion}</p>
 
                 <div className="buttons-card-detalle">
-                    <button className="cart-button-detalle" onClick={()=>handleAgregar(productoDetalle)}>Añadir al Carrito</button>
                     <NavLink to={"/"} className="boton-ver-mas">Volver al listado</NavLink>
+                    <button className="cart-button-detalle" onClick={()=>handleAgregar(productoDetalle, cantidadProd)}>Añadir al Carrito</button>
                 </div>
             </div>
 

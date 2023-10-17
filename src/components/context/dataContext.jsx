@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
-import getProductos from "../Api/Api";
+import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import { DataBase } from "../../Firebase/config";
 
 export const DataContext = createContext([]);
 
@@ -12,38 +13,17 @@ export const DataProvider = ({children}) => {
     
     const [productos, setProductos] = useState([]);
 
-    const [cantidad, setCantidad] = useState(1);
-
     const carritoNumero = () => {
         return carrito.reduce((acumulador, item) => acumulador + item.cantidad, 0);
     }
 
-    useEffect(() => {
-        async function axiosData() {
-            let data = await getProductos();
-            
-            setProductos(data);
-        }
-        axiosData();
-
-    }, [])
+    const [proxItems, setProxItems] = useState(3);
 
     useEffect(()=>{
         localStorage.setItem("carrito", JSON.stringify(carrito));
     }, [carrito])
 
-
-
-    
-    function handleRestar() {
-        cantidad > 1 && setCantidad(cantidad - 1);
-    }
-
-    function handleSumar(stock) {
-        cantidad < stock && setCantidad(cantidad + 1);
-    }
-    
-    function handleAgregar(producto) {
+    function handleAgregar(producto, cantidad) {
         const productoSel = {...producto, cantidad};
         const carritoCopia = [...carrito];
         const prodEncontradoCarrito = carritoCopia.find((item) => item.id === productoSel.id);
@@ -55,8 +35,6 @@ export const DataProvider = ({children}) => {
         }
         setCarrito(carritoCopia);
     }
-
-
 
     const handleVaciar = () => {
         setCarrito([]);
@@ -81,35 +59,38 @@ export const DataProvider = ({children}) => {
     }
 
     useEffect(() => {
-        const productosFiltrados = productos.filter(function (elemento) {
-            if (elemento.categoria === targetIn) {
-                return true;
-            }else if(targetIn === "todos"){
-                return true;
-            }else{
-                return false;
-            }
-        });
-        const productosOrdenados = productosFiltrados.sort(function (a, b) {
+        const q = targetIn === "todos" ? query(collection(DataBase, "productos"), limit(proxItems)) : 
+        query(collection(DataBase, "productos"), where("categoria", "==", targetIn), limit(proxItems));
+
+        getDocs(q)
+            .then((resp) => {
+                setProductos(
+
+                    resp.docs.map((obj) => {
+                        return {...obj.data(), id: obj.id}
+                    })
+            )
+        })
+
+        const productosOrdenados = productos.sort(function (a, b) {
             if (eventIn === "menor") {
                 return (a.precio - b.precio);
             } else if (eventIn === "mayor") {
                 return (b.precio - a.precio);
             } else if (eventIn === "todos") {
-                return productosFiltrados;
+                return productos;
             }else{
                 return productos;
             }
         });
         setFiltroCategoria(productosOrdenados);
-}, [targetIn, eventIn, productos]);
+}, [targetIn, eventIn, productos, proxItems]);
 
     return (
         <DataContext.Provider value={{ productos, carrito, setCarrito, 
-        carritoNumero, cantidad, setCantidad, 
-        handleRestar, handleSumar, handleAgregar, 
+        carritoNumero, handleAgregar, 
         handleVaciar, eliminarItem, filtroCategoria,
-        filtrarPorCategoria, filtrarPrecio }}>
+        filtrarPorCategoria, filtrarPrecio, proxItems, setProxItems}}>
             {children}
         </DataContext.Provider>
     )

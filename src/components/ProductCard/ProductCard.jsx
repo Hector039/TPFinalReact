@@ -1,12 +1,11 @@
 import Producto from "../Producto/Producto";
-import { useState } from "react";
+import { useContext } from "react";
+import { DataContext } from "../context/dataContext";
 
 export default function ProductCard({ productos }) {
 
+    const {proxItems, setProxItems} = useContext(DataContext)
     
-    const [proxItems, setProxItems] = useState(3);
-
-   
     function handleMostrarMas() {
         setProxItems(proxItems + 3);
     }

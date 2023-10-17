@@ -1,22 +1,11 @@
 import { useContext } from "react"
 import { DataContext } from "../context/dataContext"
+import { Link } from "react-router-dom";
 
 
 export default function Carrito() {
 
     const {carrito, handleVaciar, eliminarItem} = useContext(DataContext);
-/* 
-    const handleVaciar = () => {
-        setCarrito([]);
-    }
-
-    function eliminarItem(id) {
-        const itemId = carrito.find((item) => item.id === id);
-        const carritoNuevo = carrito.filter((item) => item.id !== itemId.id);
-        setCarrito(carritoNuevo);
-    }
- */
-
 
     return (
         <div className="carrito">
@@ -71,7 +60,7 @@ export default function Carrito() {
                 carrito.length > 0 ?
                 <div className="botones-carrito">
                     <button className="cart-button" onClick={handleVaciar}>Vaciar Carrito</button>
-                    <button className="carrito-comprar-button">Finalizar Compra</button>
+                    <Link to={"/checkout"} className="carrito-comprar-button" >Finalizar Compra</Link>
                 </div> : 
                 <h2 className="carrito-mensaje">Aún no hay productos en el carrito</h2>
             }

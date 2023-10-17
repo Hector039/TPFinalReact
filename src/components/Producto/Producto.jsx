@@ -1,10 +1,22 @@
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DataContext } from "../context/dataContext";
+import Contador from "../Contador/Contador";
 
 export default function Producto({producto}) {
 
-    const { cantidad, handleAgregar, handleRestar, handleSumar} = useContext(DataContext);
+    const { handleAgregar} = useContext(DataContext);
+    const [cantidadProd, setCantidadProd] = useState(1);
+    
+    /* 
+    function handleRestar() {
+        cantidadProd > 1 && setCantidadProd(cantidadProd - 1);
+    }
+
+    function handleSumar() {
+        cantidadProd < producto.stock && setCantidadProd(cantidadProd + 1);
+    }
+     */
     
     return (
         <div className="product-card">
@@ -14,16 +26,19 @@ export default function Producto({producto}) {
             <p>Categoría: {producto.categoria}</p>
             <div className="precio-cantidad">
                 <p>Precio: ${producto.precio}</p>
-                <div className="seleccion-cantidad">
+                <Contador stock={producto.stock} cantidad={cantidadProd} setcantidad={setCantidadProd}/>
+
+                {/* <div className="seleccion-cantidad">
                     <button onClick={handleRestar} className="botton-cantidad">-</button>                
-                    <p className="info-cantidad">{producto.stock === 0 ? "X" : cantidad}</p>
-                    <button onClick={()=>handleSumar(producto.stock)} className="botton-cantidad">+</button>
-                </div>
+                    <p className="info-cantidad">{producto.stock === 0 ? "Sin Stock" : cantidadProd}</p>
+                    <button onClick={handleSumar} className="botton-cantidad">+</button>
+                </div> */}
+
             </div>
 
             <div className="buttons-card">
                 <NavLink to={`/${producto.id}`} className="info-button">Ver Detalle</NavLink>
-                <button className="cart-button" onClick={()=>handleAgregar(producto)}>Añadir al Carrito</button>
+                <button className="cart-button" onClick={()=>handleAgregar(producto, cantidadProd)}>Añadir al Carrito</button>
             </div>
 
         </div>

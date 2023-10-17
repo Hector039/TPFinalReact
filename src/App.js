@@ -8,6 +8,7 @@ import Carrito from "./components/Carrito/Carrito";
 import Contacto from "./components/Contacto/Contacto";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import { DataProvider } from "./components/context/dataContext";
+import Checkout from "./components/Checkout/Checkout";
 
 export default function App() {
     return (
@@ -15,11 +16,12 @@ export default function App() {
             <BrowserRouter>
                 <NavBar />
                 <Routes>
-                    <Route exact path={"/"} element={<ItemListContainer />} />
-                    <Route exact path={"/:productoId"} element={<ItemDetailContainer />} />
-                    <Route exact path={"/cuenta"} element={<MiCuenta />} />
-                    <Route exact path={"/carrito"} element={<Carrito />} />
-                    <Route exact path={"/contacto"} element={<Contacto />} />
+                    <Route exact path={"/"} element={<ItemListContainer/>} />
+                    <Route exact path={"/:productoId"} element={<ItemDetailContainer/>} />
+                    <Route exact path={"/cuenta"} element={<MiCuenta/>} />
+                    <Route exact path={"/carrito"} element={<Carrito/>} />
+                    <Route exact path={"/contacto"} element={<Contacto/>} />
+                    <Route exact path={"/checkout"} element={<Checkout/>} />
                 </Routes>
                 <Footer />
             </BrowserRouter>
