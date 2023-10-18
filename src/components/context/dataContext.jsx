@@ -2,12 +2,15 @@ import { createContext } from "react";
 import { useState, useEffect } from "react";
 import { collection, getDocs, limit, query, where } from "firebase/firestore";
 import { DataBase } from "../../Firebase/config";
+import { DateTime } from "luxon";
 
 export const DataContext = createContext([]);
 
 const carritoEnLs = JSON.parse(localStorage.getItem("carrito")) || [];
 
 export const DataProvider = ({children}) => {
+
+    const dt = DateTime.now().setLocale('es').toLocaleString(DateTime.DATE_HUGE);
     
     const [carrito, setCarrito] = useState(carritoEnLs);
     
@@ -90,7 +93,7 @@ export const DataProvider = ({children}) => {
         <DataContext.Provider value={{ productos, carrito, setCarrito, 
         carritoNumero, handleAgregar, 
         handleVaciar, eliminarItem, filtroCategoria,
-        filtrarPorCategoria, filtrarPrecio, proxItems, setProxItems}}>
+        filtrarPorCategoria, filtrarPrecio, proxItems, setProxItems, dt}}>
             {children}
         </DataContext.Provider>
     )

@@ -16,7 +16,6 @@ export default function Carrito() {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>ID</th>
                             <th>Producto</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
@@ -30,11 +29,10 @@ export default function Carrito() {
                             carrito.map((prod) => (
                         <tr key={prod.id}>
                             <th> <button className="boton-quitar-carrito" onClick={()=>{eliminarItem(prod.id)}}>X</button></th>
-                            <th>{prod.id}</th>
                             <th>{prod.nombre_producto}</th>
                             <th>${prod.precio}</th>
                             <th>{prod.cantidad}</th>
-                            <th>${prod.cantidad * prod.precio}</th>
+                            <th>${(prod.cantidad * prod.precio).toFixed(2)}</th>
                         
                         </tr>
                             ))
@@ -49,7 +47,7 @@ export default function Carrito() {
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th>{carrito.reduce((acumulador, item) => acumulador + (item.cantidad * item.precio), 0)}</th>
+                            <th>{(carrito.reduce((acumulador, item) => acumulador + (item.cantidad * item.precio), 0)).toFixed(2)}</th>
                         </tr>
                     </tfoot>
 

@@ -7,7 +7,7 @@ import { DataBase } from "../../Firebase/config";
 
 export default function Checkout() {
 
-    const { carrito, handleVaciar } = useContext(DataContext);
+    const { carrito, handleVaciar, dt } = useContext(DataContext);
     const [encargoId, setEncargoId] = useState("");
     const { register, handleSubmit } = useForm();
 
@@ -15,6 +15,7 @@ export default function Checkout() {
         const encargo = {
             productos: carrito,
             total: carrito.reduce((acumulador, item) => acumulador + (item.cantidad * item.precio), 0),
+            fecha: dt,
             cliente: e
         }
         console.log(encargo);
@@ -31,17 +32,16 @@ export default function Checkout() {
         return (
             <div>
                 <h2>Muchas gracias por tu compra!</h2>
-                <p>Código de Compra: {encargoId.id}</p>
+                <p>Código de Compra: {encargoId.id} --- Fecha: {encargoId.fecha}</p>
                 <p>Tu pedido:</p>
                 {
                     encargoId.productos.map((prod) => (
                         <div key={prod.id}>
-                            <p>{prod.nombre_producto}</p>
-                            <p>{prod.cantidad}</p>
-                            <p>${carrito.reduce((acumulador, item) => acumulador + (item.cantidad * item.precio), 0)}</p>
+                            <p>{prod.nombre_producto} Cant: {prod.cantidad}</p>
                         </div>
                     ))
                 }
+                <p>Total: ${(carrito.reduce((acumulador, item) => acumulador + (item.cantidad * item.precio), 0)).toFixed(2)}</p>
             </div>
         )
     }
