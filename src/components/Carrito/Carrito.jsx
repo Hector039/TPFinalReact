@@ -1,11 +1,11 @@
 import { useContext } from "react"
 import { DataContext } from "../context/dataContext"
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 export default function Carrito() {
 
-    const {carrito, handleVaciar, eliminarItem} = useContext(DataContext);
+    const {carrito, handleVaciar, eliminarItem, userState} = useContext(DataContext);
 
     return (
         <div className="carrito">
@@ -28,12 +28,12 @@ export default function Carrito() {
                         {
                             carrito.map((prod) => (
                         <tr key={prod.id}>
-                            <th> <button className="boton-quitar-carrito" onClick={()=>{eliminarItem(prod.id)}}>X</button></th>
-                            <th>{prod.nombre_producto}</th>
-                            <th>${prod.precio}</th>
-                            <th>{prod.cantidad}</th>
-                            <th>${(prod.cantidad * prod.precio).toFixed(2)}</th>
-                        
+                            <td> <button className="boton-quitar-carrito" onClick={()=>{eliminarItem(prod.id)}}>X</button></td>
+                            <td>{prod.nombre_producto}</td>
+                            <td>${prod.precio}</td>
+                            <td>{prod.cantidad}</td>
+                            <td>${(prod.cantidad * prod.precio).toFixed(2)}</td>
+                            <td></td>
                         </tr>
                             ))
                         }
@@ -46,8 +46,7 @@ export default function Carrito() {
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
-                            <th>{(carrito.reduce((acumulador, item) => acumulador + (item.cantidad * item.precio), 0)).toFixed(2)}</th>
+                            <th>${(carrito.reduce((acumulador, item) => acumulador + (item.cantidad * item.precio), 0)).toFixed(2)}</th>
                         </tr>
                     </tfoot>
 
@@ -55,10 +54,17 @@ export default function Carrito() {
                 
             </div>
             {
+                !userState && <p className="carrito-info-sesion">Por favor, inicia sesión o registrate para continuar:</p>
+            }
+            {
                 carrito.length > 0 ?
                 <div className="botones-carrito">
                     <button className="cart-button" onClick={handleVaciar}>Vaciar Carrito</button>
-                    <Link to={"/checkout"} className="carrito-comprar-button" >Finalizar Compra</Link>
+                    {
+                        !userState ? 
+                            <NavLink to={"/cuenta"} className="button-carrito-cuenta">Mi Cuenta</NavLink> :
+                            <Link to={"/checkout"} className="carrito-comprar-button" >Finalizar Compra</Link>
+                        }
                 </div> : 
                 <h2 className="carrito-mensaje">Aún no hay productos en el carrito</h2>
             }

@@ -5,7 +5,6 @@ import Contador from "../Contador/Contador";
 import { doc, getDoc } from "firebase/firestore";
 import { DataBase } from "../../Firebase/config";
 
-
 export default function ItemDetailContainer() {
 
     const { handleAgregar } = useContext(DataContext);
@@ -14,34 +13,35 @@ export default function ItemDetailContainer() {
 
     const { productoId }  = useParams();
     
+
     useEffect(() => {
         const docRef = doc(DataBase, "productos", productoId);
         getDoc(docRef)
             .then((resp) => {
                 setProductoDetalle({ ...resp.data(), id: resp.id });
         })
+
+
     }, [productoId])
 
-
+    console.log(productoDetalle);
     return (
 
         <div className="product-card-detalle">
-            <div>
                 <img src={productoDetalle.img_producto} alt={productoDetalle.nombre_producto} className="img-product-detalle" />
-            </div>
-            <div className="product-main-detalle">
-                <p>{productoDetalle.nombre_producto}</p>
-                <p>Stock: {productoDetalle.stock}</p>
 
+            <div className="product-main-detalle">
+                <h3 className="product-main-detalle-titulo">{productoDetalle.nombre_producto}</h3>
+                <h4 className="product-main-detalle-titulo">Precio: ${productoDetalle.precio}</h4>
                 <div className="precio-cantidad">
-                    <p>Precio: ${productoDetalle.precio}</p>
+                    <p className="product-main-detalle-texto">Stock: {productoDetalle.stock}</p>
                     <Contador stock={productoDetalle.stock} cantidad={cantidadProd} setcantidad={setCantidadProd}/>
                 </div>
 
-                <p>Descripción: {productoDetalle.descripcion}</p>
+                <p className="product-main-detalle-texto">Descripción: {productoDetalle.descripcion}</p>
 
                 <div className="buttons-card-detalle">
-                    <NavLink to={"/"} className="boton-ver-mas">Volver al listado</NavLink>
+                    <NavLink to={"/"} className="boton-volver">Volver al listado</NavLink>
                     <button className="cart-button-detalle" onClick={()=>handleAgregar(productoDetalle, cantidadProd)}>Añadir al Carrito</button>
                 </div>
             </div>
