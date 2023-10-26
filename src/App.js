@@ -9,6 +9,7 @@ import Contacto from "./components/Contacto/Contacto";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import { DataProvider } from "./components/context/dataContext";
 import Checkout from "./components/Checkout/Checkout";
+import Sistema from "./components/Sistema/Sistema";
 
 export default function App() {
     return (
@@ -22,6 +23,7 @@ export default function App() {
                     <Route exact path={"/carrito"} element={<Carrito/>} />
                     <Route exact path={"/contacto"} element={<Contacto/>} />
                     <Route exact path={"/checkout"} element={<Checkout/>} />
+                    <Route exact path={"/sistema"} element={<Sistema/>} />
                 </Routes>
                 <Footer />
             </BrowserRouter>

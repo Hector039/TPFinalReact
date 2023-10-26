@@ -5,7 +5,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAq4Icj5ATuYnzaOpbceeupXSoUwXmRxYc",
+  apiKey: process.env.REACT_APP_API_KEY,
   authDomain: "mercaditoverde-c3956.firebaseapp.com",
   projectId: "mercaditoverde-c3956",
   storageBucket: "mercaditoverde-c3956.appspot.com",

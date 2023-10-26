@@ -5,7 +5,7 @@ import Contador from "../Contador/Contador";
 
 export default function Producto({producto}) {
 
-    const { handleAgregar} = useContext(DataContext);
+    const { handleAgregar } = useContext(DataContext);
     const [cantidadProd, setCantidadProd] = useState(1);
     
     
@@ -22,7 +22,10 @@ export default function Producto({producto}) {
 
             <div className="buttons-card">
                 <NavLink to={`/${producto.id}`} className="info-button">Ver Detalle</NavLink>
-                <button className="cart-button" onClick={()=>handleAgregar(producto, cantidadProd)}>Añadir al Carrito</button>
+                {
+                    producto.stock === 0 ? <button className="cart-button-disabled">No Disponible</button> :
+                    <button className="cart-button" onClick={()=>handleAgregar(producto, cantidadProd)}>Añadir al Carrito</button>
+                }
             </div>
             </div>
             

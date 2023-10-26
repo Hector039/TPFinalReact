@@ -87,6 +87,13 @@ export default function NavBar() {
                                 </div>
 
                                 <div className="navbar-menu">
+                                        {
+                                                userState != null &&
+                                                userState.email === "administrador@correo.com" &&
+                                                <NavLink to={"/sistema"} className="navbar-item" style={({ isActive }) => {
+                                                        return { fontWeight: isActive ? "bold" : "" }
+                                                }}>Sistema</NavLink>
+                                        }
                                         <NavLink to={"/"} className="navbar-item" style={({ isActive }) => {
                                                 return { fontWeight: isActive ? "bold" : "" }
                                         }}>Inicio</NavLink>

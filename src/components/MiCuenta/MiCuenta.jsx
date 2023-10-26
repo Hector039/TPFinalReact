@@ -1,15 +1,11 @@
 import { useForm } from "react-hook-form";
 import { DataContext } from "../context/dataContext";
 import { useContext } from "react";
-/* import { auth, googleProvider } from "../../Firebase/config";
-import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content'; */
+import googleLogo from "./assets/googleLogo.png";
 
 export default function MiCuenta() {
+
     const { login, accederConGoogle, newRegister, userState } = useContext(DataContext);
-    /* const MySwal = withReactContent(Swal); */
-    /* const { register, handleSubmit } = useForm(); */
 
     const {
         register,
@@ -24,29 +20,7 @@ export default function MiCuenta() {
     } = useForm({
         mode: "onBlur",
     });
-    /* 
-        const login = async(e) => {
-            await signInWithEmailAndPassword(auth, e.email, e.password);
-            MySwal.fire({
-                icon: "success",
-                title: "Usuario Existente",
-                text: "Se inició sesión correctamente"
-            })
-        }
-    
-        const accederConGoogle = async() =>{
-            await signInWithPopup(auth, googleProvider);
-        }
-    
-        const newRegister = async (e) => {
-            await createUserWithEmailAndPassword(auth, e.email, e.password);
-            MySwal.fire({
-                icon: "success",
-                title: "Usuario Nuevo",
-                text: "Se registró el usuario correctamente"
-            })
-        }
-     */
+
     return (
         <div className="cuenta-main">
             <h1>Mi Cuenta:</h1>
@@ -62,7 +36,7 @@ export default function MiCuenta() {
                             <button type="submit" className="cuenta-button">Acceder</button>
                         </form>
                         <p className="cuenta-title">O también:</p>
-                        <button className="cuenta-button-google" onClick={accederConGoogle}>Acceder con Google</button>
+                        <button className="cuenta-button-google" onClick={accederConGoogle}>Acceder con Google <img src={googleLogo} alt="Google Logo" /></button>
                     </div>
                 }
 
@@ -73,7 +47,7 @@ export default function MiCuenta() {
                         <input type="email" id="email" name="email" placeholder="Dirección Correo Electrónico *" {...register2("email")} />
                         <input type="password" id="password" name="password" placeholder="Contraseña nueva *" {...register2("password")} />
                         <p>Tus datos personales solo se utilizarán para procesar tu pedido.</p>
-                        <p>Recuerda que tu contrasea debe tener mínimo 6 carácteres.</p>
+                        <p>Recuerda que tu contraseña debe tener mínimo 6 carácteres.</p>
                         <button type="submit" className="cuenta-button" >Registrarse</button>
                     </form>
                 </div>
