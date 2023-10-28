@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/TPFinalReact/static/css/main.bbebcf22.css",
-    "main.js": "/TPFinalReact/static/js/main.028d29de.js",
-    "static/media/WhatsApp.svg.png": "/TPFinalReact/static/media/WhatsApp.svg.298c83652ee896bd0a7d.png",
-    "static/media/facebook-icon.jpg": "/TPFinalReact/static/media/facebook-icon.bcc9ea98d10cbaf188f7.jpg",
-    "static/media/instagram-icon.jpg": "/TPFinalReact/static/media/instagram-icon.2fb2f8772dfbd51948a6.jpg",
-    "static/media/logo.png": "/TPFinalReact/static/media/logo.f58e286ac055321d69ba.png",
-    "static/media/googleLogo.png": "/TPFinalReact/static/media/googleLogo.ca24803f1cf20db197f2.png",
-    "static/media/medios pago.webp": "/TPFinalReact/static/media/medios pago.ac238dd1941bddcb2b50.webp",
-    "static/media/carritoIcono.svg": "/TPFinalReact/static/media/carritoIcono.3d8ac722a380005e90008ec8c2d5ba66.svg",
-    "index.html": "/TPFinalReact/index.html",
-    "static/media/icon-phone.svg": "/TPFinalReact/static/media/icon-phone.43c05d1a510cada2b8f305cbb2278ae4.svg",
-    "static/media/icon-location.svg": "/TPFinalReact/static/media/icon-location.a681f02d94e561498fa0781c3538edac.svg",
-    "static/media/icon-email.svg": "/TPFinalReact/static/media/icon-email.19ab894b09784943bec7e08b3e1344a3.svg",
-    "main.bbebcf22.css.map": "/TPFinalReact/static/css/main.bbebcf22.css.map",
-    "main.028d29de.js.map": "/TPFinalReact/static/js/main.028d29de.js.map"
+    "main.css": "/tp-final-react-mandril/static/css/main.bbebcf22.css",
+    "main.js": "/tp-final-react-mandril/static/js/main.1aa4cc44.js",
+    "static/media/WhatsApp.svg.png": "/tp-final-react-mandril/static/media/WhatsApp.svg.298c83652ee896bd0a7d.png",
+    "static/media/facebook-icon.jpg": "/tp-final-react-mandril/static/media/facebook-icon.bcc9ea98d10cbaf188f7.jpg",
+    "static/media/instagram-icon.jpg": "/tp-final-react-mandril/static/media/instagram-icon.2fb2f8772dfbd51948a6.jpg",
+    "static/media/logo.png": "/tp-final-react-mandril/static/media/logo.f58e286ac055321d69ba.png",
+    "static/media/googleLogo.png": "/tp-final-react-mandril/static/media/googleLogo.ca24803f1cf20db197f2.png",
+    "static/media/medios pago.webp": "/tp-final-react-mandril/static/media/medios pago.ac238dd1941bddcb2b50.webp",
+    "static/media/carritoIcono.svg": "/tp-final-react-mandril/static/media/carritoIcono.3d8ac722a380005e90008ec8c2d5ba66.svg",
+    "index.html": "/tp-final-react-mandril/index.html",
+    "static/media/icon-phone.svg": "/tp-final-react-mandril/static/media/icon-phone.43c05d1a510cada2b8f305cbb2278ae4.svg",
+    "static/media/icon-location.svg": "/tp-final-react-mandril/static/media/icon-location.a681f02d94e561498fa0781c3538edac.svg",
+    "static/media/icon-email.svg": "/tp-final-react-mandril/static/media/icon-email.19ab894b09784943bec7e08b3e1344a3.svg",
+    "main.bbebcf22.css.map": "/tp-final-react-mandril/static/css/main.bbebcf22.css.map",
+    "main.1aa4cc44.js.map": "/tp-final-react-mandril/static/js/main.1aa4cc44.js.map"
   },
   "entrypoints": [
     "static/css/main.bbebcf22.css",
-    "static/js/main.028d29de.js"
+    "static/js/main.1aa4cc44.js"
   ]
 }
