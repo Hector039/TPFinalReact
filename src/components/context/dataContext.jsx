@@ -20,8 +20,6 @@ export const DataProvider = ({ children }) => {
 
     const [carrito, setCarrito] = useState(carritoEnLs);
 
-    /* const [productos, setProductos] = useState([]); */
-
     const carritoNumero = () => {
         return carrito.reduce((acumulador, item) => acumulador + item.cantidad, 0);
     }
@@ -255,7 +253,7 @@ export const DataProvider = ({ children }) => {
 
     return (
         <DataContext.Provider value={{
-            /* productos, */ carrito, setCarrito,
+            carrito, setCarrito,
             carritoNumero, handleAgregar, filtroCategoria,
             handleVaciar, eliminarItem, filtrarPrecio,
             filtrarPorCategoria, proxItems, setProxItems,

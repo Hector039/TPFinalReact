@@ -119,13 +119,8 @@ export default function Sistema() {
                                 </div>
                                 )
                             })
-
-
                     }
-
                 </div>
-                
-
             </div>
         </div>
     )

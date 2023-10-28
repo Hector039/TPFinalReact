@@ -1,3 +1,32 @@
+# Entrega Final Curso de React en CoderHouse
+
+Hola! Soy Hector Mandril y este es mi primer trabajo en React por lo que aún se podría seguir mejorando mucho. Esta es la entrega Final del curso React de CoderHouse.
+El mismo es un E-commerce de venta de productos de almacén pasando por todos los estadíos, secciones, listado de productos, selección de cantidades de productos, selección por categorías y filtrado por precios, carrito de compras, logueo de usuarios y checkout de salida post compra.
+
+## Comenzando 🚀
+
+Importante de destacar, es que este proyecto NO es responsivo, por lo que se deberá visualizar en patallas desde los 1060px hasta los 1440px aproximadamente.
+Además del repositorio, puedes ver el deploy en GitHub Pages en el siguiente link:
+
+
+Este proyecto cuenta con la posibilidad de registrar y loguear usuarios por lo que se pide como requisito para terminar con la compra (registros tanto por correo electrónico como a través de cuenta Google).
+Además, si se loguea el usuario "administrador@correo.com", podrá ver un botón especial en el NavBar para acceder a una sección de administración de productos, tales como Altas, Bajas y modificaciones.
+
+Se utilizó FireStore DataBase como base de datos para los productos y las compras, y FireBase Authentication para la administración de los usuarios. 📋
+
+## Construido con 🛠️
+
+Además de Firebase, se utilizaron varias librerías como Luxon, SweetAlert, Toastify, useForms, react Router.
+También se usó una Api de finanzas para la marquisina informativa de la barra de navegación.
+
+* [Luxon](https://www.npmjs.com/package/luxon) - Manejo de fechas.
+* [SweetAlert](https://sweetalert2.github.io/) - Cajas PopUp.
+* [Toastify](https://github.com/apvarun/toastify-js/blob/master/README.md) - Notificaciones.
+* [React Router](https://reactrouter.com/en/main) - Manejo Rutas en React.
+* [React Hook Form](https://react-hook-form.com/) - Manejo Formularios.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

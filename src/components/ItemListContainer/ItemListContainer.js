@@ -6,23 +6,6 @@ export default function ItemListContainer() {
 
     const { filtrarPorCategoria, filtroCategoria, filtrarPrecio } = useContext(DataContext);
 
-/* 
-    function filtrarPrecio(e) {
-        setEventIn(e.target.value);
-    }
-
-    useEffect(() => {
-
-        if(eventIn === "menor"){
-            setFiltroCategoria(productos.sort((a,b) => a.precio - b.precio));
-        }else if (eventIn === "mayor"){
-            setFiltroCategoria(productos.sort((a,b) => b.precio - a.precio));
-        }else if(eventIn === "todos"){
-            setFiltroCategoria(productos);
-        }
-
-
-    }, [eventIn, productos]); */
     console.log(filtroCategoria);
 
     return (

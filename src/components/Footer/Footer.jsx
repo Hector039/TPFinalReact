@@ -89,7 +89,7 @@ export default function Footer() {
             </div>
 
             <div className="footer-rights">
-                <p>Todos los derechos reservados MercadoVegan.cl 2023 / Desarrollado por HMandril</p>
+                <p>Todos los derechos reservados 2023 / Desarrollado por HMandril</p>
             </div>
 
         </footer>
