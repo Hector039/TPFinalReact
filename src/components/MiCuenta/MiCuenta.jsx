@@ -44,8 +44,8 @@ export default function MiCuenta() {
                     <p className="cuenta-title">Registrar cuenta nueva:</p>
                     <form onSubmit={handleSubmit2(newRegister)}>
                         <input type="text" id="nombre" name="nombre" placeholder="Nombre" />
-                        <input type="email" id="email" name="email" placeholder="Dirección Correo Electrónico *" {...register2("email")} />
-                        <input type="password" id="password" name="password" placeholder="Contraseña nueva *" {...register2("password")} />
+                        <input type="email" id="email" name="email" placeholder="Dirección Correo Electrónico *" {...register2("email", { required: true })} />
+                        <input type="password" id="password" name="password" placeholder="Contraseña nueva *" {...register2("password", { required: true })} />
                         <p>Tus datos personales solo se utilizarán para procesar tu pedido.</p>
                         <p>Recuerda que tu contraseña debe tener mínimo 6 carácteres.</p>
                         <button type="submit" className="cuenta-button" >Registrarse</button>

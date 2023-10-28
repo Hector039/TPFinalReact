@@ -8,6 +8,7 @@ El mismo es un E-commerce de venta de productos de almacén pasando por todos lo
 Importante de destacar, es que este proyecto NO es responsivo, por lo que se deberá visualizar en patallas desde los 1060px hasta los 1440px aproximadamente.
 Además del repositorio, puedes ver el deploy en GitHub Pages en el siguiente link:
 
+https://hector039.github.io/TPFinalReact/
 
 Este proyecto cuenta con la posibilidad de registrar y loguear usuarios por lo que se pide como requisito para terminar con la compra (registros tanto por correo electrónico como a través de cuenta Google).
 Además, si se loguea el usuario "administrador@correo.com", podrá ver un botón especial en el NavBar para acceder a una sección de administración de productos, tales como Altas, Bajas y modificaciones.
