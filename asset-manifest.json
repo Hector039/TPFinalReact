@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Hector039/TPFinalReact/static/css/main.bbebcf22.css",
+    "main.js": "/Hector039/TPFinalReact/static/js/main.0bf65cf4.js",
+    "static/media/WhatsApp.svg.png": "/Hector039/TPFinalReact/static/media/WhatsApp.svg.298c83652ee896bd0a7d.png",
+    "static/media/facebook-icon.jpg": "/Hector039/TPFinalReact/static/media/facebook-icon.bcc9ea98d10cbaf188f7.jpg",
+    "static/media/instagram-icon.jpg": "/Hector039/TPFinalReact/static/media/instagram-icon.2fb2f8772dfbd51948a6.jpg",
+    "static/media/logo.png": "/Hector039/TPFinalReact/static/media/logo.f58e286ac055321d69ba.png",
+    "static/media/googleLogo.png": "/Hector039/TPFinalReact/static/media/googleLogo.ca24803f1cf20db197f2.png",
+    "static/media/medios pago.webp": "/Hector039/TPFinalReact/static/media/medios pago.ac238dd1941bddcb2b50.webp",
+    "static/media/carritoIcono.svg": "/Hector039/TPFinalReact/static/media/carritoIcono.3d8ac722a380005e90008ec8c2d5ba66.svg",
+    "index.html": "/Hector039/TPFinalReact/index.html",
+    "static/media/icon-phone.svg": "/Hector039/TPFinalReact/static/media/icon-phone.43c05d1a510cada2b8f305cbb2278ae4.svg",
+    "static/media/icon-location.svg": "/Hector039/TPFinalReact/static/media/icon-location.a681f02d94e561498fa0781c3538edac.svg",
+    "static/media/icon-email.svg": "/Hector039/TPFinalReact/static/media/icon-email.19ab894b09784943bec7e08b3e1344a3.svg",
+    "main.bbebcf22.css.map": "/Hector039/TPFinalReact/static/css/main.bbebcf22.css.map",
+    "main.0bf65cf4.js.map": "/Hector039/TPFinalReact/static/js/main.0bf65cf4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bbebcf22.css",
+    "static/js/main.0bf65cf4.js"
+  ]
+}
