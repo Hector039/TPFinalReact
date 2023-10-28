@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/TPFinalReact/static/css/main.bbebcf22.css",
-    "main.js": "/TPFinalReact/static/js/main.edb52f54.js",
+    "main.js": "/TPFinalReact/static/js/main.028d29de.js",
     "static/media/WhatsApp.svg.png": "/TPFinalReact/static/media/WhatsApp.svg.298c83652ee896bd0a7d.png",
     "static/media/facebook-icon.jpg": "/TPFinalReact/static/media/facebook-icon.bcc9ea98d10cbaf188f7.jpg",
     "static/media/instagram-icon.jpg": "/TPFinalReact/static/media/instagram-icon.2fb2f8772dfbd51948a6.jpg",
@@ -14,10 +14,10 @@
     "static/media/icon-location.svg": "/TPFinalReact/static/media/icon-location.a681f02d94e561498fa0781c3538edac.svg",
     "static/media/icon-email.svg": "/TPFinalReact/static/media/icon-email.19ab894b09784943bec7e08b3e1344a3.svg",
     "main.bbebcf22.css.map": "/TPFinalReact/static/css/main.bbebcf22.css.map",
-    "main.edb52f54.js.map": "/TPFinalReact/static/js/main.edb52f54.js.map"
+    "main.028d29de.js.map": "/TPFinalReact/static/js/main.028d29de.js.map"
   },
   "entrypoints": [
     "static/css/main.bbebcf22.css",
-    "static/js/main.edb52f54.js"
+    "static/js/main.028d29de.js"
   ]
 }
