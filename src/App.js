@@ -15,7 +15,7 @@ import { ToastContainer } from 'react-toastify';
 export default function App() {
     return (
         <DataProvider>
-            <BrowserRouter basename="/">
+            <BrowserRouter basename="/app">
                 <NavBar />
                 <Routes>
                     <Route exact path={"/"} element={<ItemListContainer />} />
