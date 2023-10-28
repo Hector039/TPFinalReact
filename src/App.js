@@ -10,6 +10,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import { DataProvider } from "./components/context/dataContext";
 import Checkout from "./components/Checkout/Checkout";
 import Sistema from "./components/Sistema/Sistema";
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
     return (
@@ -17,14 +18,28 @@ export default function App() {
             <BrowserRouter>
                 <NavBar />
                 <Routes>
-                    <Route exact path={"/"} element={<ItemListContainer/>} />
-                    <Route exact path={"/:productoId"} element={<ItemDetailContainer/>} />
-                    <Route exact path={"/cuenta"} element={<MiCuenta/>} />
-                    <Route exact path={"/carrito"} element={<Carrito/>} />
-                    <Route exact path={"/contacto"} element={<Contacto/>} />
-                    <Route exact path={"/checkout"} element={<Checkout/>} />
-                    <Route exact path={"/sistema"} element={<Sistema/>} />
+                    <Route exact path={"/"} element={<ItemListContainer />} />
+                    <Route exact path={"/:productoId"} element={<ItemDetailContainer />} />
+                    <Route exact path={"/cuenta"} element={<MiCuenta />} />
+                    <Route exact path={"/carrito"} element={<Carrito />} />
+                    <Route exact path={"/contacto"} element={<Contacto />} />
+                    <Route exact path={"/checkout"} element={<Checkout />} />
+                    <Route exact path={"/sistema"} element={<Sistema />} />
                 </Routes>
+
+                <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
+
                 <Footer />
             </BrowserRouter>
         </DataProvider>

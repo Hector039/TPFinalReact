@@ -14,9 +14,9 @@ export default function Checkout() {
     const { carrito, handleVaciar } = useContext(DataContext);
     const { register, handleSubmit } = useForm();
 
-    const [ encargoId, setEncargoId ] = useState({});
-    const [ productosCheck, setProductoscheck ] = useState([]);
-    const [ infoEncargo, setInfoEncargo ] = useState({});
+    const [encargoId, setEncargoId] = useState({});
+    const [productosCheck, setProductoscheck] = useState([]);
+    const [infoEncargo, setInfoEncargo] = useState({});
 
     const MySwal = withReactContent(Swal);
     const dt = DateTime.now().setLocale('es').toLocaleString(DateTime.DATETIME_SHORT);
@@ -75,8 +75,8 @@ export default function Checkout() {
             <h1>Finalizando compra...</h1>
             <form className="checkout-form" onSubmit={handleSubmit(pagar)}>
                 <input type="text" name="nombre" placeholder="Ingresá tu Nombre" {...register("nombre", { required: true })} />
-                <input type="email"  name="email" placeholder="Ingresá tu E-mail" {...register("email", { required: true })} />
-                <input type="number"  name="telefono" placeholder="Ingresá tu Teléfono" {...register("telefono")} />
+                <input type="email" name="email" placeholder="Ingresá tu E-mail" {...register("email", { required: true })} />
+                <input type="number" name="telefono" placeholder="Ingresá tu Teléfono" {...register("telefono")} />
                 <button type="submit" className="checkout-button-comprar" >Comprar!</button>
             </form>
         </div>

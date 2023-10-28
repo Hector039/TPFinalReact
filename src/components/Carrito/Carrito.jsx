@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Carrito() {
 
-    const {carrito, handleVaciar, eliminarItem, userState} = useContext(DataContext);
+    const { carrito, handleVaciar, eliminarItem, userState } = useContext(DataContext);
 
     return (
         <div className="carrito">
@@ -27,17 +27,17 @@ export default function Carrito() {
 
                         {
                             carrito.map((prod) => (
-                        <tr key={prod.id}>
-                            <td> <button className="boton-quitar-carrito" onClick={()=>{eliminarItem(prod.id)}}>X</button></td>
-                            <td>{prod.nombre_producto}</td>
-                            <td>${prod.precio}</td>
-                            <td>{prod.cantidad}</td>
-                            <td>${(prod.cantidad * prod.precio).toFixed(2)}</td>
-                            <td></td>
-                        </tr>
+                                <tr key={prod.id}>
+                                    <td> <button className="boton-quitar-carrito" onClick={() => { eliminarItem(prod.id) }}>X</button></td>
+                                    <td>{prod.nombre_producto}</td>
+                                    <td>${prod.precio}</td>
+                                    <td>{prod.cantidad}</td>
+                                    <td>${(prod.cantidad * prod.precio).toFixed(2)}</td>
+                                    <td></td>
+                                </tr>
                             ))
                         }
-                        
+
                     </tbody>
                     <tfoot>
                         <tr>
@@ -51,24 +51,24 @@ export default function Carrito() {
                     </tfoot>
 
                 </table>
-                
+
             </div>
             {
-                !userState && <p className="carrito-info-sesion">Por favor, inicia sesión o registrate para continuar:</p>
+                !userState && carrito.length > 0 && <p className="carrito-info-sesion">Por favor, inicia sesión o registrate para continuar:</p>
             }
             {
                 carrito.length > 0 ?
-                <div className="botones-carrito">
-                    <button className="cart-button" onClick={handleVaciar}>Vaciar Carrito</button>
-                    {
-                        !userState ? 
-                            <NavLink to={"/cuenta"} className="button-carrito-cuenta">Mi Cuenta</NavLink> :
-                            <Link to={"/checkout"} className="carrito-comprar-button" >Finalizar Compra</Link>
+                    <div className="botones-carrito">
+                        <button className="cart-button" onClick={handleVaciar}>Vaciar Carrito</button>
+                        {
+                            !userState ?
+                                <NavLink to={"/cuenta"} className="button-carrito-cuenta">Mi Cuenta</NavLink> :
+                                <Link to={"/checkout"} className="carrito-comprar-button" >Finalizar Compra</Link>
                         }
-                </div> : 
-                <h2 className="carrito-mensaje">Aún no hay productos en el carrito</h2>
+                    </div> :
+                    <h2 className="carrito-mensaje">Aún no hay productos en el carrito</h2>
             }
-            
+
         </div>
     )
 }

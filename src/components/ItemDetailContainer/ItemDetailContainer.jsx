@@ -26,7 +26,7 @@ export default function ItemDetailContainer() {
 
     console.log(productoDetalle);
 
-    
+
     return (
 
         <div className="product-card-detalle">

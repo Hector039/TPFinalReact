@@ -7,15 +7,13 @@ import WhatsappIcon from "./assets/WhatsApp.svg.png";
 import { useEffect, useState } from "react";
 import getDolares from "../ApiDolar/ApiDolar";
 import { DateTime } from "luxon";
-import { signOut } from "firebase/auth";
-import { auth } from "../../Firebase/config";
 import { DataContext } from "../context/dataContext";
 import { useContext } from "react";
 
 
 export default function NavBar() {
 
-        const { userState, setUserState } = useContext(DataContext);
+        const { userState, logOut } = useContext(DataContext);
 
         const dt = DateTime.now().setLocale('es').toLocaleString(DateTime.DATE_MED);
 
@@ -29,11 +27,6 @@ export default function NavBar() {
                 axiosData();
 
         }, [])
-
-        const logOut = async () => {
-                await signOut(auth);
-                setUserState(auth.currentUser);
-        }
 
         return (
                 <nav className="navbar">
@@ -63,7 +56,7 @@ export default function NavBar() {
 
                                 <NavLink to={"/cuenta"} className="button-top-navbar" style={({ isActive }) => {
                                         return { fontWeight: isActive ? "bold" : "" }
-                                }}>{!userState ? "Mi Cuenta" : userState.email }</NavLink>
+                                }}>{!userState ? "Mi Cuenta" : userState.email}</NavLink>
 
                                 {userState && <button className="boton-logout" onClick={logOut}>LogOut</button>}
 
@@ -90,7 +83,7 @@ export default function NavBar() {
                                         {
                                                 userState != null &&
                                                 userState.email === "administrador@correo.com" &&
-                                                <NavLink to={"/sistema"} className="navbar-item" style={({ isActive }) => {
+                                                <NavLink to={"/sistema"} className="navbar-item-sistema" style={({ isActive }) => {
                                                         return { fontWeight: isActive ? "bold" : "" }
                                                 }}>Sistema</NavLink>
                                         }

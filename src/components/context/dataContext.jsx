@@ -5,9 +5,11 @@ import { DataBase } from "../../Firebase/config";
 
 import { auth, googleProvider } from "../../Firebase/config";
 import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import Toastify from 'toastify-js';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const DataContext = createContext([]);
 const carritoEnLs = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -18,7 +20,7 @@ export const DataProvider = ({ children }) => {
 
     const [carrito, setCarrito] = useState(carritoEnLs);
 
-    const [productos, setProductos] = useState([]);
+    /* const [productos, setProductos] = useState([]); */
 
     const carritoNumero = () => {
         return carrito.reduce((acumulador, item) => acumulador + item.cantidad, 0);
@@ -42,22 +44,31 @@ export const DataProvider = ({ children }) => {
         }
         setCarrito(carritoCopia);
 
-        Toastify({
-            text: "Producto agregado al Carrito!",
-            duration: 3000,
-            newWindow: true,
-            close: true,
-            gravity: "top",
-            position: "right",
-            stopOnFocus: true,
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-        }).showToast();
+        toast.success("Producto agregado al Carrito!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
     }
 
     const handleVaciar = () => {
         setCarrito([]);
+
+        toast.success("Carrito Vaciado!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
     }
 
     function eliminarItem(id) {
@@ -65,23 +76,21 @@ export const DataProvider = ({ children }) => {
         const carritoNuevo = carrito.filter((item) => item.id !== itemId.id);
         setCarrito(carritoNuevo);
 
-        Toastify({
-            text: "Producto eliminado.",
-            duration: 3000,
-            newWindow: true,
-            close: true,
-            gravity: "top",
-            position: "right",
-            stopOnFocus: true,
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-        }).showToast();
+        toast.success("Producto eliminado.", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
     }
 
     const [filtroCategoria, setFiltroCategoria] = useState([]);
     const [targetIn, setTargetIn] = useState("todos");
-    const [eventIn, setEventIn] = useState();
+    const [eventIn, setEventIn] = useState("todos");
 
     function filtrarPorCategoria(e) {
         setTargetIn(e.target.value);
@@ -97,38 +106,29 @@ export const DataProvider = ({ children }) => {
 
         getDocs(q)
             .then((resp) => {
-                setProductos(
 
-                    resp.docs.map((obj) => {
-                        return { ...obj.data(), id: obj.id }
-                    })
-                )
+                const productosFiltrados = resp.docs.map((obj) => {
+                    return { ...obj.data(), id: obj.id }
+                })
+
+                if (eventIn === "menor") {
+                    setFiltroCategoria(productosFiltrados.sort((a, b) => a.precio - b.precio));
+                } else if (eventIn === "mayor") {
+                    setFiltroCategoria(productosFiltrados.sort((a, b) => b.precio - a.precio));
+                } else if (eventIn === "todos") {
+                    setFiltroCategoria(productosFiltrados);
+                }
             })
 
-    }, [targetIn, proxItems])
 
-    useEffect(() => {
+    }, [targetIn, proxItems, eventIn])
 
-        const productosOrdenados = productos.sort(function (a, b) {
-            if (eventIn === "menor") {
-                return (a.precio - b.precio);
-            } else if (eventIn === "mayor") {
-                return (b.precio - a.precio);
-            } else if (eventIn === "todos") {
-                return productos;
-            } else {
-                return productos;
-            }
-        });
-        setFiltroCategoria(productosOrdenados);
-    }, [eventIn, productos]);
-
-    console.log(productos);
+    console.log(filtroCategoria);
 
     /* seccion usuarios y administración*/
 
     const [userState, setUserState] = useState(null);
-    const [ productosEncontrados, setProductosEncontrados ] = useState([]);
+    const [productosEncontrados, setProductosEncontrados] = useState([]);
 
     const login = async (e) => {
         await signInWithEmailAndPassword(auth, e.ecorreo, e.pass);
@@ -155,70 +155,71 @@ export const DataProvider = ({ children }) => {
         setUserState(auth.currentUser);
     }
 
-    const cargarProducto = (e) => {
+    const cargarProducto = async (e) => {
         console.log(e);
 
-        /* await addDoc(collection(DataBase, "productos"), { categoria: e.categorias, descripcion: e.descripcion,
-        img_producto: e.imagen, nombre_producto: e.nombre, precio: e.precio, stock: e.stock}) */
+        await addDoc(collection(DataBase, "productos"), {
+            categoria: e.categorias, descripcion: e.descripcion,
+            img_producto: e.imagen, nombre_producto: e.nombre, precio: e.precio, stock: e.stock
+        })
 
-        Toastify({
-            text: "Producto cargado con éxito!",
-            duration: 3000,
-            newWindow: true,
-            close: true,
-            gravity: "top",
-            position: "right",
-            stopOnFocus: true,
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-        }).showToast();
+        toast.success("Producto cargado con éxito!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
     }
-    const eliminarProducto = (id) => {
+    const eliminarProducto = async (id) => {
         console.log(id);
 
-        /*  const item = doc(DataBase, "productos", id);
-         await deleteDoc(item); */
+        const item = doc(DataBase, "productos", id);
+        await deleteDoc(item);
 
-        Toastify({
-            text: "Producto eliminado con éxito!",
-            duration: 3000,
-            newWindow: true,
-            close: true,
-            gravity: "top",
-            position: "right",
-            stopOnFocus: true,
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-        }).showToast();
+        toast.success("Producto eliminado con éxito!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+
+        setProductosEncontrados([]);
     }
 
-    const modificarProducto = (e) => {
+    const modificarProducto = async (e) => {
         console.log(e);
 
-        /*  const item = doc(DataBase, "productos", e.id);
-        await updateDoc(item, { categoria: e.categorias, descripcion: e.descripcion,
-            img_producto: e.imagen, nombre_producto: e.nombre, precio: e.precio, stock: e.stock}); */
+        const item = doc(DataBase, "productos", e.id);
+        await updateDoc(item, {
+            categoria: e.categorias, descripcion: e.descripcion,
+            img_producto: e.imagen, nombre_producto: e.nombre, precio: e.precio, stock: e.stock
+        });
 
-            Toastify({
-                text: "Producto modificado con éxito!",
-                duration: 3000,
-                newWindow: true,
-                close: true,
-                gravity: "top",
-                position: "right",
-                stopOnFocus: true,
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)",
-                },
-            }).showToast();
+        toast.success("Producto modificado con éxito!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+
+        setProductosEncontrados([]);
     }
 
     const buscarProducto = (e) => {
-        console.log(e);
 
-        /*  const q = query(collection(DataBase, "productos"), where("nombre_producto", "==", e));
+        const q = query(collection(DataBase, "productos"), where("nombre_producto", ">=", e.nombreProducto), where("nombre_producto", "<=", e.nombreProducto + '~'));
 
         getDocs(q)
             .then((resp) => {
@@ -228,7 +229,24 @@ export const DataProvider = ({ children }) => {
                         return { ...obj.data(), id: obj.id }
                     })
                 )
-            }) */
+            })
+        console.log(productosEncontrados);
+    }
+
+    const logOut = async () => {
+        await signOut(auth);
+        setUserState(auth.currentUser);
+
+        toast.success("Sesión cerrada correctamente.", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
     }
 
     console.log(userState);
@@ -237,13 +255,13 @@ export const DataProvider = ({ children }) => {
 
     return (
         <DataContext.Provider value={{
-            productos, carrito, setCarrito,
-            carritoNumero, handleAgregar,
-            handleVaciar, eliminarItem, filtroCategoria,
-            filtrarPorCategoria, filtrarPrecio, proxItems, setProxItems,
+            /* productos, */ carrito, setCarrito,
+            carritoNumero, handleAgregar, filtroCategoria,
+            handleVaciar, eliminarItem, filtrarPrecio,
+            filtrarPorCategoria, proxItems, setProxItems,
             login, accederConGoogle, newRegister, userState, setUserState,
-            cargarProducto, eliminarProducto, modificarProducto, 
-            productosEncontrados, buscarProducto
+            cargarProducto, eliminarProducto, modificarProducto,
+            productosEncontrados, buscarProducto, logOut
         }}>
             {children}
         </DataContext.Provider>

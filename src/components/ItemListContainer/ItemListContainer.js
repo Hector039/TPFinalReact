@@ -4,7 +4,26 @@ import { DataContext } from "../context/dataContext";
 
 export default function ItemListContainer() {
 
-    const { filtroCategoria, filtrarPorCategoria, filtrarPrecio } = useContext(DataContext);
+    const { filtrarPorCategoria, filtroCategoria, filtrarPrecio } = useContext(DataContext);
+
+/* 
+    function filtrarPrecio(e) {
+        setEventIn(e.target.value);
+    }
+
+    useEffect(() => {
+
+        if(eventIn === "menor"){
+            setFiltroCategoria(productos.sort((a,b) => a.precio - b.precio));
+        }else if (eventIn === "mayor"){
+            setFiltroCategoria(productos.sort((a,b) => b.precio - a.precio));
+        }else if(eventIn === "todos"){
+            setFiltroCategoria(productos);
+        }
+
+
+    }, [eventIn, productos]); */
+    console.log(filtroCategoria);
 
     return (
         <div className="item-list-container">
@@ -23,8 +42,8 @@ export default function ItemListContainer() {
                     </select>
                 </div>
 
-                
-            <div className="filter-filter">
+
+                <div className="filter-filter">
                     <label htmlFor="filter-select">Filtrar:</label>
                     <select name="filter" id="filter-select" onChange={filtrarPrecio}>
                         <option value="todos">--Elige el Filtro/Ninguno--</option>
@@ -34,7 +53,7 @@ export default function ItemListContainer() {
                 </div>
 
             </div>
-                <ProductCard key={filtroCategoria.id} productos={filtroCategoria} />
+            <ProductCard productos={filtroCategoria} />
         </div>
     )
 }
