@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tp-final-react-mandril/static/css/main.bbebcf22.css",
-    "main.js": "/tp-final-react-mandril/static/js/main.1aa4cc44.js",
+    "main.css": "/tp-final-react-mandril/static/css/main.49fdda0a.css",
+    "main.js": "/tp-final-react-mandril/static/js/main.8ded1d0a.js",
     "static/media/WhatsApp.svg.png": "/tp-final-react-mandril/static/media/WhatsApp.svg.298c83652ee896bd0a7d.png",
     "static/media/facebook-icon.jpg": "/tp-final-react-mandril/static/media/facebook-icon.bcc9ea98d10cbaf188f7.jpg",
     "static/media/instagram-icon.jpg": "/tp-final-react-mandril/static/media/instagram-icon.2fb2f8772dfbd51948a6.jpg",
@@ -13,11 +13,11 @@
     "static/media/icon-phone.svg": "/tp-final-react-mandril/static/media/icon-phone.43c05d1a510cada2b8f305cbb2278ae4.svg",
     "static/media/icon-location.svg": "/tp-final-react-mandril/static/media/icon-location.a681f02d94e561498fa0781c3538edac.svg",
     "static/media/icon-email.svg": "/tp-final-react-mandril/static/media/icon-email.19ab894b09784943bec7e08b3e1344a3.svg",
-    "main.bbebcf22.css.map": "/tp-final-react-mandril/static/css/main.bbebcf22.css.map",
-    "main.1aa4cc44.js.map": "/tp-final-react-mandril/static/js/main.1aa4cc44.js.map"
+    "main.49fdda0a.css.map": "/tp-final-react-mandril/static/css/main.49fdda0a.css.map",
+    "main.8ded1d0a.js.map": "/tp-final-react-mandril/static/js/main.8ded1d0a.js.map"
   },
   "entrypoints": [
-    "static/css/main.bbebcf22.css",
-    "static/js/main.1aa4cc44.js"
+    "static/css/main.49fdda0a.css",
+    "static/js/main.8ded1d0a.js"
   ]
 }
