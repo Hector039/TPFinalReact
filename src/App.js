@@ -15,20 +15,20 @@ import { ToastContainer } from 'react-toastify';
 export default function App() {
     return (
         <DataProvider>
-            <BrowserRouter basename="/">
+            <BrowserRouter basename="/tp-final-react-mandril">
                 <NavBar />
                 <Routes>
-                    <Route exact path={"/"} element={<ItemListContainer />} />
-                    <Route exact path={"/:productoId"} element={<ItemDetailContainer />} />
-                    <Route exact path={"/cuenta"} element={<MiCuenta />} />
-                    <Route exact path={"/carrito"} element={<Carrito />} />
-                    <Route exact path={"/contacto"} element={<Contacto />} />
-                    <Route exact path={"/checkout"} element={<Checkout />} />
-                    <Route exact path={"/sistema"} element={<Sistema />} />
+                    <Route path={"/"} element={<ItemListContainer />} />
+                    <Route path={"/:productoId"} element={<ItemDetailContainer />} />
+                    <Route path={"/cuenta"} element={<MiCuenta />} />
+                    <Route path={"/carrito"} element={<Carrito />} />
+                    <Route path={"/contacto"} element={<Contacto />} />
+                    <Route path={"/checkout"} element={<Checkout />} />
+                    <Route path={"/sistema"} element={<Sistema />} />
                 </Routes>
 
                 <ToastContainer
-                    position="top-right"
+                    position="bottom-right"
                     autoClose={3000}
                     hideProgressBar={false}
                     newestOnTop={false}

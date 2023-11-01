@@ -5,15 +5,7 @@ import { DataContext } from "../context/dataContext";
 
 export default function Sistema() {
 
-    const { cargarProducto, modificarProducto, eliminarProducto, productosEncontrados, buscarProducto } = useContext(DataContext);
-
-    const {
-        register,
-        handleSubmit,
-        reset
-    } = useForm({
-        mode: "onBlur",
-    });
+    const { cargarProducto, modificarProducto, eliminarProducto, productosEncontrados, buscarProducto, register, handleSubmit, reset } = useContext(DataContext);
 
     const {
         register: register2,
@@ -83,7 +75,7 @@ export default function Sistema() {
                     <button type="submit" className="sistema-boton">Buscar Producto</button>
                 </form>
 
-                    <div className="bajas-modif-main">
+                <div className="bajas-modif-main">
 
                     {
                         productosEncontrados.length === 0 ?
@@ -92,31 +84,31 @@ export default function Sistema() {
 
                             productosEncontrados.map((obj) => {
                                 return (
-                                
-                                <div key={obj.id}>
-                                    <form onSubmit={handleSubmit3(modificarProducto)} className="checkout-form">
-                                        <p>ID del producto:</p>
-                                        <input type="text" name="id" disabled {...register3("id")} />
-                                        <input type="text" name="nombre"  {...register3("nombre", { required: true })} />
-                                        <input type="text" name="descripcion" {...register3("descripcion", { required: true })} />
-                                        <input type="text" name="imagen" {...register3("imagen", { required: true })} />
-                                        <select name="categorias" id="category-select" {...register3("categorias", { required: true })}>
-                                            <option value="Bebidas Vegetales">Bebidas Vegetales</option>
-                                            <option value="Granolas y Cereales">Granolas y Cereales</option>
-                                            <option value="Frutos Secos">Frutos Secos</option>
-                                            <option value="Dulces y Chocolates">Dulces y Chocolates</option>
-                                            <option value="Congelados">Congelados</option>
-                                        </select>
-                                        <input type="number" name="precio" {...register3("precio", { required: true })} />
-                                        <input type="number" name="stock" {...register3("stock", { required: true })} />
 
-                                        <div className="sistema-bajas-modif-botones">
-                                            <button type="submit" className="sistema-boton">Modificar Producto</button>
-                                            <button className="sistema-boton-eliminar" onClick={() => eliminarProducto(obj.id)}>Eliminar producto</button>
-                                        </div>
+                                    <div key={obj.id}>
+                                        <form onSubmit={handleSubmit3(modificarProducto)} className="checkout-form">
+                                            <p>ID del producto:</p>
+                                            <input type="text" name="id" disabled {...register3("id")} />
+                                            <input type="text" name="nombre"  {...register3("nombre", { required: true })} />
+                                            <input type="text" name="descripcion" {...register3("descripcion", { required: true })} />
+                                            <input type="text" name="imagen" {...register3("imagen", { required: true })} />
+                                            <select name="categorias" id="category-select" {...register3("categorias", { required: true })}>
+                                                <option value="Bebidas Vegetales">Bebidas Vegetales</option>
+                                                <option value="Granolas y Cereales">Granolas y Cereales</option>
+                                                <option value="Frutos Secos">Frutos Secos</option>
+                                                <option value="Dulces y Chocolates">Dulces y Chocolates</option>
+                                                <option value="Congelados">Congelados</option>
+                                            </select>
+                                            <input type="number" name="precio" {...register3("precio", { required: true })} />
+                                            <input type="number" name="stock" {...register3("stock", { required: true })} />
 
-                                    </form>
-                                </div>
+                                            <div className="sistema-bajas-modif-botones">
+                                                <button type="submit" className="sistema-boton">Modificar Producto</button>
+                                                <button className="sistema-boton-eliminar" onClick={() => eliminarProducto(obj.id)}>Eliminar producto</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
                                 )
                             })
                     }

@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useForm } from "react-hook-form";
 
 export const DataContext = createContext([]);
 const carritoEnLs = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -153,8 +154,15 @@ export const DataProvider = ({ children }) => {
         setUserState(auth.currentUser);
     }
 
+    const {
+        register,
+        handleSubmit,
+        reset,
+    } = useForm({
+        mode: "onBlur",
+    });
+
     const cargarProducto = async (e) => {
-        console.log(e);
 
         await addDoc(collection(DataBase, "productos"), {
             categoria: e.categorias, descripcion: e.descripcion,
@@ -162,7 +170,7 @@ export const DataProvider = ({ children }) => {
         })
 
         toast.success("Producto cargado con éxito!", {
-            position: "top-right",
+            position: "bottom-right",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -171,7 +179,10 @@ export const DataProvider = ({ children }) => {
             progress: undefined,
             theme: "colored",
         });
+
+        reset();
     }
+
     const eliminarProducto = async (id) => {
         console.log(id);
 
@@ -179,7 +190,7 @@ export const DataProvider = ({ children }) => {
         await deleteDoc(item);
 
         toast.success("Producto eliminado con éxito!", {
-            position: "top-right",
+            position: "bottom-right",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -202,7 +213,7 @@ export const DataProvider = ({ children }) => {
         });
 
         toast.success("Producto modificado con éxito!", {
-            position: "top-right",
+            position: "bottom-right",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -236,7 +247,7 @@ export const DataProvider = ({ children }) => {
         setUserState(auth.currentUser);
 
         toast.success("Sesión cerrada correctamente.", {
-            position: "top-right",
+            position: "bottom-right",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -259,7 +270,8 @@ export const DataProvider = ({ children }) => {
             filtrarPorCategoria, proxItems, setProxItems,
             login, accederConGoogle, newRegister, userState, setUserState,
             cargarProducto, eliminarProducto, modificarProducto,
-            productosEncontrados, buscarProducto, logOut
+            productosEncontrados, buscarProducto, logOut,  register,
+            handleSubmit,reset
         }}>
             {children}
         </DataContext.Provider>

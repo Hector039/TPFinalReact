@@ -11,7 +11,12 @@ export default function Contacto() {
         <div className="contacto-main">
             <div className="contacto-info-uno">
                 <h1>Quienes somos?</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis eum odio beatae autem, voluptatum doloremque vero culpa vitae adipisci ipsa, aperiam ullam quo voluptas qui, temporibus magni perferendis praesentium aspernatur.</p>
+                <p>Bienvenidos a Nuestro Mercadito Verde, queriamos contarte un poco de nosotros y de nuestro sueño que comenzo alla por 1987. Somos un negocio 
+                    familiar destinado a la venta de alimentos naturales de la mas alta calidad, brindando cariño, atencion personalizada e informacion 
+                    sobre lo que vendemos y consumimos. Con una amplia variedad en productos para celiacos, 
+                    hipertensos, diabeticos y todos aquellos que quieran un estilo de vida distinto encaminado por la buena alimentacion.
+                    Gracias por visitar nuestro sitio. Te invitamos a seguirnos en nuestros medios oficiales. 
+                    Enterate de las ultimas novedades que tenemos para vos al instante.</p>
             </div>
 
 
